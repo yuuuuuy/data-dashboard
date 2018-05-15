@@ -1,10 +1,33 @@
 {% extends "bootstrap/base.html" %}
 {% block title %}Home {% endblock %}
+{% block head %}
+    {{ super() }}
+ {{ echarts_js_dependencies(hm) }}
+{% endblock %}
+
 {% block page_content %}
 <div class="container">
     <div class="jumbotron">
         <h1><a href="{{ url_for('index') }}">My First Demo</a></h1>
         <p>Welcome to the website</p>
     </div>
+</div>
+<div class="container">
+    <p>
+        这是一个由 Flask 和 pyecharts 整合的一个例子。主要特点在于：
+    </p>
+    <ul>
+        <li>完全使用本地的js文件</li>
+        <li>在模板文件中使用 echarts_* 模板函数。</li>
+    </ul>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">日历热力图示例</div>
+        <div class="panel-body">
+            {{ echarts_container(hm) }}
+        </div>
+    </div>
+
+    {{ echarts_js_content(hm) }}
 </div>
 {% endblock %}
